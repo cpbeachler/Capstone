@@ -1,0 +1,29 @@
+.nav{
+    width: 100%;
+    border: 1px solid black;
+    border-top: none;
+}
+
+.navContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.navButton{
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    border: none;
+
+}
+#loginButton{
+    border-bottom: 1px solid black;
+}
+
+.noUser{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border:1px  solid black;
+    width: 10%;
+}

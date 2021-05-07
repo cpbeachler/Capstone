@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import '../CSS/SignUpForm.css'
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
@@ -39,7 +40,8 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
+    <form onSubmit={onSignUp}
+      className='signup'>
       <div>
         <label>User Name</label>
         <input
