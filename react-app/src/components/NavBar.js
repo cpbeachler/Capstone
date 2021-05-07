@@ -1,35 +1,44 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
+import { showModal, setCurrentModal } from '../store/modal';
+import LoginForm from '../components/auth/LoginForm';
+import SignupForm from '../components/auth/SignUpForm';
 import LogoutButton from './auth/LogoutButton';
+import './CSS/Navbar.css'
 
 const NavBar = () => {
+  const dispatch = useDispatch();
+  const showLogin = () => {
+    dispatch(setCurrentModal(LoginForm));
+    dispatch(showModal());
+  };
+  const showSignup = () => {
+    dispatch(setCurrentModal(SignupForm));
+    dispatch(showModal());
+  };
   return (
     <nav>
-      <ul>
-        <li>
+      <div>
+        <div>
           <NavLink to="/" exact={true} activeClassName="active">
             Home
           </NavLink>
-        </li>
-        <li>
-          <NavLink to="/login" exact={true} activeClassName="active">
-            Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
+        </div>
+        <div>
+        <button onClick={showLogin}>
+            Log In
+        </button>
+        </div>
+        <div>
+        <button onClick={showSignup}>
             Sign Up
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/users" exact={true} activeClassName="active">
-            Users
-          </NavLink>
-        </li>
-        <li>
+        </button>
+        </div>
+        <div>
           <LogoutButton />
-        </li>
-      </ul>
+        </div>
+      </div>
     </nav>
   );
 }
