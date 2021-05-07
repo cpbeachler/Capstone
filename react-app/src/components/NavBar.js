@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { showModal, setCurrentModal } from '../store/modal';
 import LoginForm from '../components/auth/LoginForm';
 import SignupForm from '../components/auth/SignUpForm';
@@ -17,27 +17,38 @@ const NavBar = () => {
     dispatch(setCurrentModal(SignupForm));
     dispatch(showModal());
   };
+
+  const user = useSelector(state => state.session.user)
+
   return (
-    <nav>
-      <div>
-        <div>
+    <nav className='nav'>
+      <div className='navContainer'>
+        <div className='home'>
           <NavLink to="/" exact={true} activeClassName="active">
             Home
           </NavLink>
         </div>
-        <div>
-        <button onClick={showLogin}>
-            Log In
-        </button>
-        </div>
-        <div>
-        <button onClick={showSignup}>
-            Sign Up
-        </button>
-        </div>
+        {!user &&
+        <div className='noUser'>
+          <div className='login' id='loginButton'>
+          <button className='navButton'
+
+          onClick={showLogin}
+          >
+              Log In
+          </button>
+          </div>
+          <div className='signup'>
+          <button className='navButton'
+          onClick={showSignup}>
+              Sign Up
+          </button>
+          </div>
+        </div>}
+        {user &&
         <div>
           <LogoutButton />
-        </div>
+        </div>}
       </div>
     </nav>
   );
