@@ -5,9 +5,9 @@ import '../CSS/Binder.css'
 
 const Binder = () => {
 
-    useEffect(async() => {
+    // useEffect(async() => {
 
-    },[])
+    // },[])
 
     return(
         <div>

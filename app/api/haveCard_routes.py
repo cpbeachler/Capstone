@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from ..forms.haveCard_form import haveCardForm
 from app.models import db, HaveCard
 
-card_routes = Blueprint('haveCards', __name__)
+have_routes = Blueprint('haveCards', __name__)
 
 
 @have_routes.route('/')
@@ -22,3 +22,11 @@ def create_haveCard():
     db.session.add(haveCard)
     db.session.commit()
     return haveCard.to_dict()
+
+
+@have_routes.route('/', methods=['DELETE'])
+def delete_haveCard(cardId):
+    card = HaveCard.query.get(cardId)
+    db.session.delete(card)
+    db.session.commit()
+    return {'success': "card deleted"}
