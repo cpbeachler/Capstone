@@ -5,6 +5,6 @@ from app.models import WantCard
 card_routes = Blueprint('cards', __name__)
 
 
-@deck_routes.route('/card')
+@card_routes.route('/card')
 def card():
     return {'cards': []}
