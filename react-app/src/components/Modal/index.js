@@ -1,24 +1,31 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { hideModal, setCurrentModal } from '../../store/modal';
 
-import { hideModal } from '../../store/modal';
 
 import './modal.css';
 
 export default function Modal () {
+
     const dispatch = useDispatch();
 
     const user = useSelector(state => state.session.user);
-    const mount = useSelector(state => state.modal.mount);
     const display = useSelector(state => state.modal.display);
     const Current = useSelector(state => state.modal.current);
 
     const onClose = () => {
         dispatch(hideModal());
     };
+    useEffect(() => {
+        if(user){
+            dispatch(hideModal())
+            dispatch(setCurrentModal(null))
+        }
+    },[user, dispatch])
 
-    return !user && display && mount && ReactDOM.createPortal(
+    console.log('modal component')
+    return !user && display && Current && ReactDOM.createPortal(
     <div onClick={onClose} className='modal-background'>
         <div
         onClick={e => {e.stopPropagation()}}
@@ -27,5 +34,5 @@ export default function Modal () {
         <Current />
         </div>
     </div>,
-    mount);
+    document.getElementById('modal'));
 }

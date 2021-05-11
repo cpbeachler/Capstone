@@ -31,6 +31,8 @@ const LoginForm = () => {
     return <Redirect to="/" />;
   }
 
+
+  console.log('login form')
   return (
     <form onSubmit={onLogin}
       className='login'>
