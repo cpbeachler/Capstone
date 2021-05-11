@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request
+from flask_login import current_user
 from ..forms.wantCard_form import wantCardForm
 from app.models import db, WantCard
 
@@ -7,7 +8,7 @@ want_routes = Blueprint('wantCards', __name__)
 
 @want_routes.route('/')
 def wantCards():
-    wantCards = WantCard.query.all()
+    wantCards = WantCard.query.filter_by(userId=current_user.id).all()
     return {'wantCards': [wantCards.to_dict() for card in wantCards]}
 
 
@@ -16,7 +17,7 @@ def create_wantCard():
     form = wantCardForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     wantCard = wantCard(
-        userId=id,
+        userId=current_user.id,
         cardId=form.data['cardId']
     )
     db.session.add(wantCard)

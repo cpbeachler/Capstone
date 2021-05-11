@@ -18,10 +18,10 @@ export default function Modal () {
         dispatch(hideModal());
     };
 
-    return !user && mount && display && ReactDOM.createPortal(
+    return !user && display && mount && ReactDOM.createPortal(
     <div onClick={onClose} className='modal-background'>
         <div
-        onClick={e => e.stopPropagation()}
+        onClick={e => {e.stopPropagation()}}
         className='modal-content'
         >
         <Current />
