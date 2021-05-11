@@ -9,7 +9,9 @@ const Binder = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     // const currentHaveCards = useSelector(state=> state.haveCards)
-    const user = useSelector(state=> state.user)
+    const state = useSelector(state=>state)
+    const user = useSelector(state=> state.session.user)
+    const haveCards = useSelector(state=> state.haveCards)
     const [cardId, setCardId] = useState('')
     const [cardComponents, setCardComponents] = useState([])
 
@@ -18,13 +20,24 @@ const Binder = () => {
     }
 
     useEffect(() => {
-        async function fetchData(id) {
-            const response = await fetch(`api/haveCards${id}`)
+        async function fetchData() {
+            const response = await fetch(`api/haveCards/${user.id}`)
             const responseData = await response.json()
-            await dispatch(setHaveCards(responseData))
+            await dispatch(setHaveCards(responseData.haveCards))
+            console.log(state)
         }
+
         fetchData()
-        setCardComponents()
+
+        // async function createHaveCardComponents() {
+        //     setCardComponents(haveCards.map((card)=>{
+        //         return <div className='card'></div>
+        //     }))
+        // }
+    },[])
+
+    useEffect(()=>{
+        console.log(haveCards)
     },[])
 
     return(
@@ -42,7 +55,7 @@ const Binder = () => {
                     ></input>
                     <button type='submit'>Add Card</button>
                 </form>
-                <div></div>
+                <div>{}</div>
             </div>
             <div>
 

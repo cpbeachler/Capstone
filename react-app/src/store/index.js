@@ -2,11 +2,15 @@ import {createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from 'redux-thunk';
 import session from './session'
 import modal from './modal'
+import haveCards from "./haveCards"
+import wantCards from "./wantCards"
 
 
 const rootReducer = combineReducers({
     session,
     modal,
+    haveCards,
+    // wantCards,
 });
 
 let enhancer;

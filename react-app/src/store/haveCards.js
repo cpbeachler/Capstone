@@ -18,11 +18,21 @@ const delHave = (have) => ({
 })
 
 
-export const setHaveCards = (id) => async (dispatch) => {
-    const response = await fetch(`/api/haveCards`)
-    const cards = await response.json()
-    //plug in external api call
-    dispatch(setHave(cards))
+export const setHaveCards = (cards) => async (dispatch) => {
+
+    let call = {'identifiers': []}
+    cards.map((card, id)=> call.identifiers[id] = {'name': card.cardId})
+    const response = await fetch('https://api.scryfall.com/cards/collection', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(
+            call
+        )
+    })
+    const responseData = await response.json()
+    dispatch(setHave(responseData.data))
 }
 
 export const addHaveCard = (userId, cardId) => async(dispatch) => {
@@ -64,6 +74,7 @@ export default function reducer(state = initialState, action) {
             return {haveCards: [action.payload]}
         case DEL_HAVE:
             return {...state, haveCards: [...state.haveCards.filter(card => card.id !== action.payload)]}
-
+        default:
+            return state
     }
 }
