@@ -8,7 +8,8 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import Modal from "./components/Modal"
 import User from "./components/User";
-import Main from "./components/home/Main"
+import Main from "./components/Home/Main"
+import Binder from "./components/Binder"
 // import { authenticate } from "./services/auth";
 import { authenticate } from "./store/session";
 
@@ -19,7 +20,7 @@ function App() {
 
   useEffect(() => {
     (async() => {
-      await dispatch(authenticate())
+      dispatch(authenticate())
       // setLoaded(true);
     })();
   }, [dispatch]);
@@ -33,17 +34,10 @@ function App() {
       <NavBar />
       <Modal />
       <Switch>
-        <Route path="/login" exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm />
-        </Route>
-        <ProtectedRoute path="/users" exact={true} >
-          <UsersList/>
+        <ProtectedRoute path="/binders" exact={true} >
+          <Binder />
         </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true} >
-          <User />
+        <ProtectedRoute path="/trade" exact={true} >
         </ProtectedRoute>
         <Route path="/" exact={true}>
           <Main />

@@ -1,6 +1,6 @@
-import React, {useEffect, useRef} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider, useDispatch } from 'react-redux';
+import { Provider } from 'react-redux';
 
 import {setModalMount} from './store/modal'
 import './index.css';
@@ -10,17 +10,12 @@ import configureStore from './store'
 const store = configureStore();
 
 const Root = () => {
-  const dispatch = useDispatch();
-  const modalMooringRef = useRef(null);
 
-  useEffect(() => {
-    dispatch(setModalMount(modalMooringRef.current));
-  }, [dispatch]);
-
+  console.log('root function')
   return (
     <>
       <App />
-      <div ref={modalMooringRef} className='modal' />
+      <div id='modal' />
     </>
   );
 };
