@@ -16,13 +16,13 @@ def haveCards(id):
 def create_haveCard():
     form = haveCardForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    haveCard = haveCard(
+    newHaveCard = HaveCard(
         userId=current_user.id,
         cardId=form.data['cardId']
     )
-    db.session.add(haveCard)
+    db.session.add(newHaveCard)
     db.session.commit()
-    return haveCard.to_dict()
+    return newHaveCard.to_dict()
 
 
 @have_routes.route('/', methods=['DELETE'])

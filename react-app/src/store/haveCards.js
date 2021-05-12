@@ -35,19 +35,20 @@ export const setHaveCards = (cards) => async (dispatch) => {
     dispatch(setHave(responseData.data))
 }
 
-export const addHaveCard = (userId, cardId) => async(dispatch) => {
-    const response = await fetch('/api/haveCards', {
+export const addHaveCard = (cardId) => async(dispatch) => {
+    const response = await fetch('/api/haveCards/', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            userId,
             cardId
         })
     })
     const createdCard = await response.json()
-    await dispatch(addHave(createdCard))
+    const externalFetch = await fetch(`https://api.scryfall.com/cards/named?exact=${createdCard.cardId}`)
+    const externalFetchData = await externalFetch.json()
+    dispatch(addHave(externalFetchData))
 }
 
 export const deleteHaveCard = (id) => async(dispatch) => {
@@ -58,7 +59,7 @@ export const deleteHaveCard = (id) => async(dispatch) => {
         },
     })
     const deletedCard = await response.json()
-    await dispatch(delHave(id))
+    dispatch(delHave(id))
 }
 
 const initialState = {}
@@ -68,10 +69,10 @@ export default function reducer(state = initialState, action) {
         case SET_HAVE:
             return action.payload
         case ADD_HAVE:
-            if(state.haveCards){
-                return {...state, haveCards:[...state.haveCards, action.payload]}
+            if(state){
+                return [...state, action.payload]
             }
-            return {haveCards: [action.payload]}
+            return action.payload
         case DEL_HAVE:
             return {...state, haveCards: [...state.haveCards.filter(card => card.id !== action.payload)]}
         default:

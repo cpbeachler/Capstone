@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import {useDispatch, useSelector} from "react-redux"
 import {useHistory} from 'react-router-dom'
-import { setHaveCards } from "../../store/haveCards"
+import { setHaveCards, addHaveCard } from "../../store/haveCards"
 import '../CSS/Binder.css'
 
 
@@ -13,28 +13,20 @@ const Binder = () => {
     const user = useSelector(state=> state.session.user)
     const haveCards = useSelector(state=> state.haveCards)
     const [cardId, setCardId] = useState('')
-    const [haveCardsComponents, setHaveCardsComponents] = useState([])
 
-    const onSubmitHave = () => {
-
+    const onSubmitHave = (e) => {
+        e.preventDefault()
+        const createdCard = dispatch(addHaveCard(cardId))
     }
 
     useEffect(() => {
         async function fetchData() {
             const response = await fetch(`api/haveCards/${user.id}`)
             const responseData = await response.json()
-            await dispatch(setHaveCards(responseData.haveCards))
+            dispatch(setHaveCards(responseData.haveCards))
         }
         fetchData()
         // console.log(haveCards)
-        if(Object.keys(haveCards).length > 0){
-            setHaveCardsComponents(haveCards.map((card)=>{
-                return (
-                    <p>{card.name}</p>
-                )
-
-        }))
-        }
     },[])
 
     return(
