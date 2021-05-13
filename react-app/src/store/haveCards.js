@@ -52,11 +52,13 @@ export const addHaveCard = (cardId) => async(dispatch) => {
 }
 
 export const deleteHaveCard = (id) => async(dispatch) => {
-    const response = await fetch('api/haveCards', {
+    console.log(id)
+    const response = await fetch(`api/haveCards/${id}`, {
         method: 'DELETE',
         headers: {
             "Content-Type": 'application/json'
         },
+
     })
     const deletedCard = await response.json()
     dispatch(delHave(id))
@@ -74,7 +76,8 @@ export default function reducer(state = initialState, action) {
             }
             return action.payload
         case DEL_HAVE:
-            return {...state, haveCards: [...state.haveCards.filter(card => card.id !== action.payload)]}
+            console.log({...state.filter(card => card.id !== action.payload)})
+            return state
         default:
             return state
     }

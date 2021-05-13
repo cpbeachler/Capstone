@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import {useDispatch, useSelector} from "react-redux"
 import {useHistory} from 'react-router-dom'
-import { setHaveCards, addHaveCard } from "../../store/haveCards"
+import { setHaveCards, addHaveCard, deleteHaveCard } from "../../store/haveCards"
 import '../CSS/Binder.css'
 
 
@@ -19,6 +19,12 @@ const Binder = () => {
         const createdCard = dispatch(addHaveCard(cardId))
     }
 
+    const deleteCard = (e) => {
+        e.preventDefault()
+        const cardId = e.target.id
+        dispatch(deleteHaveCard(cardId))
+    }
+
     useEffect(() => {
         async function fetchData() {
             const response = await fetch(`api/haveCards/${user.id}`)
@@ -26,7 +32,6 @@ const Binder = () => {
             dispatch(setHaveCards(responseData.haveCards))
         }
         fetchData()
-        // console.log(haveCards)
     },[])
 
     return(
@@ -48,7 +53,10 @@ const Binder = () => {
                     {Object.keys(haveCards).length > 0 &&
                     haveCards.map((card)=>{
                     return (
-                        <img src={card.image_uris.small}></img>
+                        <>
+                            <img src={card.image_uris.small}></img>
+                            <div onClick={deleteCard} id={card.name}>x</div>
+                        </>
                     )})}
                 </div>
 

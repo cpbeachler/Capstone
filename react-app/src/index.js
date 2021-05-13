@@ -10,8 +10,6 @@ import configureStore from './store'
 const store = configureStore();
 
 const Root = () => {
-
-  console.log('root function')
   return (
     <>
       <App />
