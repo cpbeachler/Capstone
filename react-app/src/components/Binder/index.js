@@ -16,13 +16,15 @@ const Binder = () => {
 
     const onSubmitHave = (e) => {
         e.preventDefault()
-        const createdCard = dispatch(addHaveCard(cardId))
+        const sanitizedInput = cardId.toLowerCase()
+        const createdCard = dispatch(addHaveCard(sanitizedInput))
     }
 
     const deleteCard = (e) => {
         e.preventDefault()
         const cardId = e.target.id
-        dispatch(deleteHaveCard(cardId))
+        const sanitizedInput = cardId.toLowerCase()
+        dispatch(deleteHaveCard(sanitizedInput))
     }
 
     useEffect(() => {

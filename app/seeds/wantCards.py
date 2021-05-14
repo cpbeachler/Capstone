@@ -2,11 +2,11 @@ from app.models import db, WantCard
 
 
 def seed_wantCards():
-    wantCard0 = WantCard(userId=1, cardId='Torrential Gearhulk')
-    wantCard1 = WantCard(userId=1, cardId='Cataclysmic Gearhulk')
-    wantCard2 = WantCard(userId=1, cardId='Combustible Gearhulk')
-    wantCard3 = WantCard(userId=1, cardId='Verdurous Gearhulk')
-    wantCard4 = WantCard(userId=1, cardId='Noxious Gearhulk')
+    wantCard0 = WantCard(userId=1, cardId='torrential gearhulk')
+    wantCard1 = WantCard(userId=1, cardId='cataclysmic gearhulk')
+    wantCard2 = WantCard(userId=1, cardId='combustible gearhulk')
+    wantCard3 = WantCard(userId=1, cardId='verdurous gearhulk')
+    wantCard4 = WantCard(userId=1, cardId='noxious gearhulk')
 
     db.session.add(wantCard0)
     db.session.add(wantCard1)
