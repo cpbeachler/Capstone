@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import {useDispatch, useSelector} from "react-redux"
 import {useHistory} from 'react-router-dom'
 import { setHaveCards, addHaveCard, deleteHaveCard } from "../../store/haveCards"
+import { setWantCards, addWantCard, deleteWantCard } from "../../store/wantCards"
 import '../CSS/Binder.css'
 
 
@@ -9,31 +10,51 @@ const Binder = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     // const currentHaveCards = useSelector(state=> state.haveCards)
-    const state = useSelector(state=>state)
     const user = useSelector(state=> state.session.user)
     const haveCards = useSelector(state=> state.haveCards)
-    const [cardId, setCardId] = useState('')
+    const wantCards = useSelector(state=> state.wantCards)
+    const [haveCardId, setHaveCardId] = useState('')
+    const [wantCardId, setWantCardId] = useState('')
 
     const onSubmitHave = (e) => {
         e.preventDefault()
-        const sanitizedInput = cardId.toLowerCase()
+        const sanitizedInput = haveCardId.toLowerCase()
         const createdCard = dispatch(addHaveCard(sanitizedInput))
     }
 
-    const deleteCard = (e) => {
+    const onSubmitWant = (e) => {
+        e.preventDefault()
+        const sanitizedInput = wantCardId.toLowerCase()
+        const createdCard = dispatch(addWantCard(sanitizedInput))
+    }
+
+    const deleteHaveCard = (e) => {
         e.preventDefault()
         const cardId = e.target.id
         const sanitizedInput = cardId.toLowerCase()
         dispatch(deleteHaveCard(sanitizedInput))
     }
 
+    const deleteWantCard = (e) => {
+        e.preventDefault()
+        const cardId = e.target.id
+        const sanitizedInput = cardId.toLowerCase()
+        dispatch(deleteWantCard(sanitizedInput))
+    }
+
     useEffect(() => {
-        async function fetchData() {
+        async function fetchHaveData() {
             const response = await fetch(`api/haveCards/${user.id}`)
             const responseData = await response.json()
             dispatch(setHaveCards(responseData.haveCards))
         }
-        fetchData()
+        async function fetchWantData() {
+            const response = await fetch(`api/wantCards/${user.id}`)
+            const responseData = await response.json()
+            dispatch(setWantCards(responseData.wantCards))
+        }
+        fetchHaveData()
+        fetchWantData()
     },[])
 
     return(
@@ -46,8 +67,8 @@ const Binder = () => {
                     cardId='cardId'
                     className='haveForm'
                     placeholder='Card Name'
-                    onChange={(e) =>setCardId(e.target.value)}
-                    value={cardId}
+                    onChange={(e) =>setHaveCardId(e.target.value)}
+                    value={haveCardId}
                     ></input>
                     <button type='submit'>Add Card</button>
                 </form>
@@ -57,13 +78,34 @@ const Binder = () => {
                     return (
                         <>
                             <img src={card.image_uris.small}></img>
-                            <div onClick={deleteCard} id={card.name}>x</div>
+                            <div onClick={deleteHaveCard} id={card.name}>x</div>
                         </>
                     )})}
                 </div>
-
             </div>
             <div>
+                <form className='wantForm' onSubmit={onSubmitWant}>
+                    <label className='wantForm'> Add a wanted Card </label>
+                    <input
+                    type='text'
+                    cardId='cardId'
+                    className='wantForm'
+                    placeholder='Card Name'
+                    onChange={(e) =>setWantCardId(e.target.value)}
+                    value={wantCardId}
+                    ></input>
+                    <button type='submit'>Add Card</button>
+                </form>
+                <div>
+                    {Object.keys(wantCards).length > 0 &&
+                    wantCards.map((card)=>{
+                    return (
+                        <>
+                            <img src={card.image_uris.small}></img>
+                            <div onClick={deleteWantCard} id={card.name}>x</div>
+                        </>
+                    )})}
+                </div>
 
             </div>
         </div>

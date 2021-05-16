@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
     session,
     modal,
     haveCards,
-    // wantCards,
+    wantCards,
 });
 
 let enhancer;
