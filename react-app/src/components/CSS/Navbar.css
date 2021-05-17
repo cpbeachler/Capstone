@@ -1,7 +1,7 @@
 .nav{
     width: 100%;
-    border: 1px solid black;
-    border-top: none;
+    border-bottom: 7px double gray;
+
 }
 
 .navContainer{
@@ -12,12 +12,22 @@
 .navButton{
     height: 100%;
     width: 100%;
-    background-color: white;
+    background-color: gray;
     border: none;
+    color: white;
+    text-shadow: -5px 0px 5px rgba(0, 0, 0, 0.67)
 
 }
 #loginButton{
     border-bottom: 1px solid black;
+}
+
+.logo{
+    height: 60px;
+    width: auto;
+    background-color: gray;
+    padding: 5px;
+    margin: 5px;
 }
 
 .noUser{

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react"
 import {useDispatch, useSelector} from "react-redux"
 import {useHistory} from 'react-router-dom'
-import { setHaveCards, addHaveCard, deleteHaveCard } from "../../store/haveCards"
-import { setWantCards, addWantCard, deleteWantCard } from "../../store/wantCards"
+import { setHaveCards, addHaveCard, deleteOneHaveCard } from "../../store/haveCards"
+import { setWantCards, addWantCard, deleteOneWantCard } from "../../store/wantCards"
+import { showModal, setCurrentModal } from '../../store/modal';
 import '../CSS/Binder.css'
 
 
@@ -32,15 +33,21 @@ const Binder = () => {
         e.preventDefault()
         const cardId = e.target.id
         const sanitizedInput = cardId.toLowerCase()
-        dispatch(deleteHaveCard(sanitizedInput))
+        dispatch(deleteOneHaveCard(sanitizedInput))
     }
 
     const deleteWantCard = (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         const cardId = e.target.id
         const sanitizedInput = cardId.toLowerCase()
-        dispatch(deleteWantCard(sanitizedInput))
+        dispatch(deleteOneWantCard(sanitizedInput))
     }
+
+    const modalCard = (e) =>{
+        e.preventDefault()
+
+    }
+
 
     useEffect(() => {
         async function fetchHaveData() {
@@ -77,7 +84,8 @@ const Binder = () => {
                     haveCards.map((card)=>{
                     return (
                         <>
-                            <img className='card' src={card.image_uris.small}></img>
+                            <img className='card' src={card.image_uris.small}
+                            onClick={deleteHaveCard} id={card.name}></img>
                         </>
                     )})}
                 </div>
@@ -100,7 +108,9 @@ const Binder = () => {
                     wantCards.map((card)=>{
                     return (
                         <>
-                            <img className='card' src={card.image_uris.small}></img>
+                            <img className='card' src={card.image_uris.small}
+                            onClick={deleteWantCard}
+                            id={card.name}></img>
                         </>
                     )})}
                 </div>

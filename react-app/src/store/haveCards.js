@@ -51,7 +51,7 @@ export const addHaveCard = (cardId) => async(dispatch) => {
     dispatch(addHave(externalFetchData))
 }
 
-export const deleteHaveCard = (id) => async(dispatch) => {
+export const deleteOneHaveCard = (id) => async(dispatch) => {
     const response = await fetch(`api/haveCards/${id}`, {
         method: 'DELETE',
         headers: {

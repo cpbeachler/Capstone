@@ -51,7 +51,7 @@ export const addWantCard = (cardId) => async(dispatch) => {
     dispatch(addWant(externalFetchData))
 }
 
-export const deleteWantCard = (id) => async(dispatch) => {
+export const deleteOneWantCard = (id) => async(dispatch) => {
     const response = await fetch(`api/wantCards/${id}`, {
         method: 'DELETE',
         headers: {

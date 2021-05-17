@@ -5,7 +5,9 @@ import { showModal, setCurrentModal } from '../store/modal';
 import LoginForm from '../components/auth/LoginForm';
 import SignupForm from '../components/auth/SignUpForm';
 import LogoutButton from './auth/LogoutButton';
+import logo from './tradr.png'
 import './CSS/Navbar.css'
+
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -25,7 +27,7 @@ const NavBar = () => {
       <div className='navContainer'>
         <div className='home'>
           <NavLink to="/" exact={true} activeClassName="active">
-            Home
+            <img src={logo} className='logo'></img>
           </NavLink>
         </div>
         {!user &&

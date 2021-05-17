@@ -5,7 +5,7 @@ html,body {
 }
 body{
     background: url('components/carbon.png');
-    background-repeat: no-repeat;
+    background-repeat: round;
     background-size:cover;
     color: white;
 }
