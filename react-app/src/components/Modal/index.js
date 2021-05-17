@@ -24,7 +24,6 @@ export default function Modal () {
         }
     },[user, dispatch])
 
-    console.log('modal component')
     return !user && display && Current && ReactDOM.createPortal(
     <div onClick={onClose} className='modal-background'>
         <div

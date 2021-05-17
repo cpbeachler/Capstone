@@ -2,11 +2,11 @@ from app.models import db, HaveCard
 
 
 def seed_haveCards():
-    haveCard0 = HaveCard(userId=1, cardId='Ancestral Recall')
-    haveCard1 = HaveCard(userId=1, cardId='Healing Salve')
-    haveCard2 = HaveCard(userId=1, cardId='Lightning Bolt')
-    haveCard3 = HaveCard(userId=1, cardId='Giant Growth')
-    haveCard4 = HaveCard(userId=1, cardId='Dark Ritual')
+    haveCard0 = HaveCard(userId=1, cardId='ancestral recall')
+    haveCard1 = HaveCard(userId=1, cardId='healing salve')
+    haveCard2 = HaveCard(userId=1, cardId='lightning bolt')
+    haveCard3 = HaveCard(userId=1, cardId='giant growth')
+    haveCard4 = HaveCard(userId=1, cardId='dark ritual')
 
     db.session.add(haveCard0)
     db.session.add(haveCard1)

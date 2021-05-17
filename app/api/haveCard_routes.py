@@ -25,9 +25,12 @@ def create_haveCard():
     return newHaveCard.to_dict()
 
 
-@have_routes.route('/', methods=['DELETE'])
-def delete_haveCard(id):
-    card = HaveCard.query.get(id)
-    db.session.delete(card)
+@have_routes.route('/<string:cardId>', methods=['DELETE'])
+def delete_haveCard(cardId):
+    userId = current_user.id
+    content = request.get_json()
+    cardId = content['id']
+    deleteCard = HaveCard.query.filter_by(userId=userId, cardId=cardId).first()
+    db.session.delete(deleteCard)
     db.session.commit()
     return {'success': "card deleted"}

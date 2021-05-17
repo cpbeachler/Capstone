@@ -13,8 +13,8 @@
 .modal-content {
     height: 40vh;
     width: 40vw;
-    background-color: white;
+    background-color: gray;
     box-sizing: border-box;
-    border: 1px soild black;
+    border: 1px solid black;
     border-radius: 40px;
 }
