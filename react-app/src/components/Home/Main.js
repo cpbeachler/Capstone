@@ -9,7 +9,7 @@ function Main() {
     return (
         <div className='container'>
             <div className='all-container'>
-                <h1>Trade App</h1>
+                <h1 className='header' id='name'>Tradr</h1>
                 <div className='top-container'>
                     <div className='button'
                         onClick={() => {history.push('/binders')}}>
@@ -21,9 +21,9 @@ function Main() {
                     </div>
                 </div>
                 <div className='bottom-container'>
-                    <h2>Have</h2>
-                    <h2>Find</h2>
-                    <h2>Trade</h2>
+                    <h2 className='header'>Have</h2>
+                    <h2 className='header'>Find</h2>
+                    <h2 className='header'>Trade</h2>
                 </div>
             </div>
         </div>

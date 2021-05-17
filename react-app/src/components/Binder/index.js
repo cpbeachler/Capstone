@@ -58,10 +58,10 @@ const Binder = () => {
     },[])
 
     return(
-        <div>
-            <div>
+        <div className='binder-container'>
+            <div className='have'>
                 <form className='haveForm' onSubmit={onSubmitHave}>
-                    <label className='haveForm'> Add an owned Card </label>
+                    <label className='haveForm'> Add an owned Card: </label>
                     <input
                     type='text'
                     cardId='cardId'
@@ -70,22 +70,21 @@ const Binder = () => {
                     onChange={(e) =>setHaveCardId(e.target.value)}
                     value={haveCardId}
                     ></input>
-                    <button type='submit'>Add Card</button>
+                    <button type='submit' className="submitButton">Add Card</button>
                 </form>
-                <div>
+                <div className='haveBinder' id="full">
                     {Object.keys(haveCards).length > 0 &&
                     haveCards.map((card)=>{
                     return (
                         <>
-                            <img src={card.image_uris.small}></img>
-                            <div onClick={deleteHaveCard} id={card.name}>x</div>
+                            <img className='card' src={card.image_uris.small}></img>
                         </>
                     )})}
                 </div>
             </div>
-            <div>
+            <div className='want'>
                 <form className='wantForm' onSubmit={onSubmitWant}>
-                    <label className='wantForm'> Add a wanted Card </label>
+                    <label className='wantForm'> Add a wanted Card: </label>
                     <input
                     type='text'
                     cardId='cardId'
@@ -94,15 +93,14 @@ const Binder = () => {
                     onChange={(e) =>setWantCardId(e.target.value)}
                     value={wantCardId}
                     ></input>
-                    <button type='submit'>Add Card</button>
+                    <button type='submit' className="submitButton">Add Card</button>
                 </form>
-                <div>
+                <div className='wantBinder' id="full" id="full">
                     {Object.keys(wantCards).length > 0 &&
                     wantCards.map((card)=>{
                     return (
                         <>
-                            <img src={card.image_uris.small}></img>
-                            <div onClick={deleteWantCard} id={card.name}>x</div>
+                            <img className='card' src={card.image_uris.small}></img>
                         </>
                     )})}
                 </div>
