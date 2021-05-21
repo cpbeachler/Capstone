@@ -37,7 +37,7 @@ const Binder = () => {
     }
 
     const deleteWantCard = (e) => {
-        // e.preventDefault()
+        e.preventDefault()
         const cardId = e.target.id
         const sanitizedInput = cardId.toLowerCase()
         dispatch(deleteOneWantCard(sanitizedInput))
