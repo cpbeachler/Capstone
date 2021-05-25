@@ -82,7 +82,9 @@ const Binder = () => {
                     ></input>
                     <button type='submit' className="submitButton">Add Card</button>
                 </form>
-                <p className='text'>Add cards to your have binder to find others to trade with! Accepts exact card names.</p>
+                <p className='text'>Add cards to your have binder to find others to trade with! Accepts exact card names.
+                Clicking a card will remove it from your binder.
+                </p>
                 <div className='haveBinder' id="full">
                     {Object.keys(haveCards).length > 0 &&
                     haveCards.map((card)=>{
@@ -108,7 +110,9 @@ const Binder = () => {
                     ></input>
                     <button type='submit' className="submitButton">Add Card</button>
                 </form>
-                <p className='text'>Add cards to your have binder to find others to trade with! Accepts exact card names.</p>
+                <p className='text'>Add cards to your have binder to find others to trade with! Accepts exact card names.
+                Clicking a card will remove it from your binder.
+                </p>
                 <div className='wantBinder' id="full" id="full">
                     {Object.keys(wantCards).length > 0 &&
                     wantCards.map((card)=>{

@@ -1,50 +1,41 @@
 import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-
-
-
+import '../CSS/Trade.css'
 const Trade = () => {
-
     const user = useSelector(state=> state.session.user)
-
-
+    const [matches, setMatches] = useState([])
+    const [matchComponents, setMatchComponents] = useState([])
     useEffect(()=> {
-        // async function fetchTradePairs(wantedCards){
-        //     const response = await fetch(`api/users/${user.id}`, {
-        //         method: 'GET',
-        //         headers: {
-        //                 "Content-Type": 'application/json'
-        //         },
-        //         body: JSON.stringify({
-        //             wantedCards
-        //         })
-        //     })
-        //     const responseData = await response.json()
-        //     console.log(responseData)
-        // }
-        // async function fetchWantedCards(){
-        //     const response = await fetch(`api/wantCards/${user.id}`)
-        //     const responseData = await response.json()
-        //     console.log(responseData.wantCards)
-        //     let wantedCards = []
-        //     responseData.wantCards.forEach(card=>{
-        //         wantedCards.push(card.cardId)
-        //     })
-        //     return wantedCards
-        // }
-        // fetchTradePairs(fetchWantedCards())
-        async function fetchTradePairs(){
+        async function fetchMatches(){
             const response = await fetch(`api/users/${user.id}`)
+            const responseData = await response.json()
+            setMatches(responseData.matches)
         }
+        fetchMatches()
+
     },[])
+    useEffect(() => {
+        function createComponents(){
+            setMatchComponents(matches.map((match)=>{
+                return(
+                    <div className='match'>
+                        <div className='matchInfo' id='trader'>{match.trader}</div>
+                        <div className='matchInfo' id='contact'>{match.contact}</div>
+                        <div className='matchInfo' id='haveCard'>{match.haveCard}</div>
+                        <div className='matchInfo' id='wantCard'>{match.wantCard}</div>
+                    </div>
+                )
+            }))
+        }
+
+        createComponents()
+    },[matches])
 
     return (
-        <div>
-            <div>
-
-            </div>
-            <div>
-                {/* for each match display a list of card wanted card had , and email */}
+        <div className='container'>
+            <h1 className='header'>Matched Trades</h1>
+            <div className='matches'>
+                {matchComponents}
             </div>
         </div>
     )
