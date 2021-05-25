@@ -21,8 +21,8 @@ const Trade = () => {
                     <div className='match'>
                         <div className='matchInfo' id='trader'>{match.trader}</div>
                         <div className='matchInfo' id='contact'>{match.contact}</div>
-                        <div className='matchInfo' id='haveCard'>{match.haveCard}</div>
-                        <div className='matchInfo' id='wantCard'>{match.wantCard}</div>
+                        <div className='matchInfo' id='haveCard'>{match.haveCard.toUpperCase()}</div>
+                        <div className='matchInfo' id='wantCard'>{match.wantCard.toUpperCase()}</div>
                     </div>
                 )
             }))
