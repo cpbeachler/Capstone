@@ -1,0 +1,27 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.matches{
+    width: 70%;
+    display: flex;
+}
+.matchInfo{
+    padding: 30px;
+    height: 100%;
+    width: 25%;
+
+}
+.match{
+    width: 100%;
+    height: 25%;
+    background-color: grey;
+    display:flex;
+    flex-direction: row;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: inset 0px 0px 16px 5px rgba(0,0,0,0.55);
+    text-shadow: -5px 0px 5px rgba(0, 0, 0, 0.67)
+}

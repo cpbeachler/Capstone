@@ -10,6 +10,7 @@ import Modal from "./components/Modal"
 import User from "./components/User";
 import Main from "./components/Home/Main"
 import Binder from "./components/Binder"
+import Trade from "./components/Trade"
 // import { authenticate } from "./services/auth";
 import { authenticate } from "./store/session";
 
@@ -38,6 +39,7 @@ function App() {
           <Binder />
         </ProtectedRoute>
         <ProtectedRoute path="/trade" exact={true} >
+          <Trade />
         </ProtectedRoute>
         <Route path="/" exact={true}>
           <Main />
