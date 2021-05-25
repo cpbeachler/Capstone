@@ -52,7 +52,7 @@ export const addWantCard = (cardId) => async(dispatch) => {
 }
 
 export const deleteOneWantCard = (id) => async(dispatch) => {
-    const response = await fetch(`api/wantCards/${id}`, {
+    const response = await fetch(`/api/wantCards/${id}`, {
         method: 'DELETE',
         headers: {
             "Content-Type": 'application/json'

@@ -21,12 +21,14 @@ const Binder = () => {
         e.preventDefault()
         const sanitizedInput = haveCardId.toLowerCase()
         const createdCard = dispatch(addHaveCard(sanitizedInput))
+        setHaveCardId('')
     }
 
     const onSubmitWant = (e) => {
         e.preventDefault()
         const sanitizedInput = wantCardId.toLowerCase()
         const createdCard = dispatch(addWantCard(sanitizedInput))
+        setWantCardId('')
     }
 
     const deleteHaveCard = (e) => {
@@ -67,6 +69,7 @@ const Binder = () => {
     return(
         <div className='binder-container'>
             <div className='have'>
+                <h1 className='title'>Have Binder</h1>
                 <form className='haveForm' onSubmit={onSubmitHave}>
                     <label className='haveForm'> Add an owned Card: </label>
                     <input
@@ -79,6 +82,7 @@ const Binder = () => {
                     ></input>
                     <button type='submit' className="submitButton">Add Card</button>
                 </form>
+                <p className='text'>Add cards to your have binder to find others to trade with! Accepts exact card names.</p>
                 <div className='haveBinder' id="full">
                     {Object.keys(haveCards).length > 0 &&
                     haveCards.map((card)=>{
@@ -91,6 +95,7 @@ const Binder = () => {
                 </div>
             </div>
             <div className='want'>
+                <h1 className='title'>Want Binder</h1>
                 <form className='wantForm' onSubmit={onSubmitWant}>
                     <label className='wantForm'> Add a wanted Card: </label>
                     <input
@@ -103,6 +108,7 @@ const Binder = () => {
                     ></input>
                     <button type='submit' className="submitButton">Add Card</button>
                 </form>
+                <p className='text'>Add cards to your have binder to find others to trade with! Accepts exact card names.</p>
                 <div className='wantBinder' id="full" id="full">
                     {Object.keys(wantCards).length > 0 &&
                     wantCards.map((card)=>{
@@ -116,6 +122,7 @@ const Binder = () => {
                 </div>
 
             </div>
+            <p></p>
         </div>
     )
 }

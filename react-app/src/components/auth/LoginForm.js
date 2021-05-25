@@ -31,6 +31,14 @@ const LoginForm = () => {
     return <Redirect to="/" />;
   }
 
+  const demoLogin = async (e) =>{
+    e.preventDefault()
+    const data = await dispatch(login('demo@aa.io','password'))
+    if (data.errors){
+      setErrors(data.errors)
+    }
+  }
+
   return (
     <form onSubmit={onLogin}
       className='login'>
@@ -59,6 +67,7 @@ const LoginForm = () => {
           onChange={updatePassword}
         />
         <button type="submit">Login</button>
+        <button onClick={demoLogin}>Demo</button>
       </div>
     </form>
   );
