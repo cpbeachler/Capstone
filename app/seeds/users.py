@@ -6,10 +6,10 @@ from app.models import db, User
 def seed_users():
 
     demo = User(username='Demo', email='demo@aa.io',
-                password='password', location='here')
+                password='password', location=29681)
 
     demo2 = User(username='Demo2', email='demo2@aa.io',
-                password='password', location='here')
+                password='password', location=29681)
 
     db.session.add(demo)
     db.session.add(demo2)

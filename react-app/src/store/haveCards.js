@@ -67,12 +67,15 @@ export const deleteOneHaveCard = (id) => async(dispatch) => {
     dispatch(delHave(id))
 }
 
-const initialState = {}
+const initialState = []
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case SET_HAVE:
-            return action.payload
+            if(action.payload){
+                return action.payload
+            }
+            return state
         case ADD_HAVE:
             if(state){
                 return [...state, action.payload]
