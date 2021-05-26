@@ -61,6 +61,7 @@ const Binder = () => {
             const response = await fetch(`api/wantCards/${user.id}`)
             const responseData = await response.json()
             dispatch(setWantCards(responseData.wantCards))
+
         }
         fetchHaveData()
         fetchWantData()

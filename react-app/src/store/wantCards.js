@@ -66,12 +66,15 @@ export const deleteOneWantCard = (id) => async(dispatch) => {
     dispatch(delWant(id))
 }
 
-const initialState = {}
+const initialState = []
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case SET_WANT:
-            return action.payload
+            if(action.payload){
+                return action.payload
+            }
+            return state
         case ADD_WANT:
             if(state){
                 return [...state, action.payload]
