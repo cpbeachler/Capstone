@@ -3,6 +3,9 @@
     border-bottom: 7px double gray;
 
 }
+.name{
+    font-size: 30px;
+}
 
 .navContainer{
     display: flex;

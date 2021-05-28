@@ -30,6 +30,7 @@ const NavBar = () => {
             <img alt='tradr logo' src={logo} className='logo'></img>
           </NavLink>
         </div>
+        <h1 className='name'>Tradr</h1>
         {!user &&
         <div className='noUser'>
           <div className='login' id='loginButton'>
