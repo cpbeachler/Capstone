@@ -27,7 +27,7 @@ const NavBar = () => {
       <div className='navContainer'>
         <div className='home'>
           <NavLink to="/" exact={true} activeClassName="active">
-            <img src={logo} className='logo'></img>
+            <img alt='tradr logo' src={logo} className='logo'></img>
           </NavLink>
         </div>
         {!user &&

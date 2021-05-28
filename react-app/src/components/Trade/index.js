@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import '../CSS/Trade.css'
 const Trade = () => {
     const user = useSelector(state=> state.session.user)
@@ -19,10 +19,19 @@ const Trade = () => {
             setMatchComponents(matches.map((match)=>{
                 return(
                     <div className='match'>
-                        <div className='matchInfo' id='trader'>{match.trader}</div>
-                        <div className='matchInfo' id='contact'>{match.contact}</div>
-                        <div className='matchInfo' id='haveCard'>{match.haveCard.toUpperCase()}</div>
-                        <div className='matchInfo' id='wantCard'>{match.wantCard.toUpperCase()}</div>
+                        <div className='matchInfo' id='trader'>
+                            <p>Tradr:</p>
+                            {match.trader}
+                            </div>
+                        <div className='matchInfo' id='contact'>
+                            <p>Contact Info: </p>
+                            {match.contact}</div>
+                        <div className='matchInfo' id='haveCard'>
+                            <p>Owned Card:</p>
+                            {match.haveCard.toUpperCase()}</div>
+                        <div className='matchInfo' id='wantCard'>
+                            <p>Wanted Card: </p>
+                            {match.wantCard.toUpperCase()}</div>
                     </div>
                 )
             }))

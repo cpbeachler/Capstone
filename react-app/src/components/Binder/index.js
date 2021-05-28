@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react"
 import {useDispatch, useSelector} from "react-redux"
-import {useHistory} from 'react-router-dom'
 import { setHaveCards, addHaveCard, deleteOneHaveCard } from "../../store/haveCards"
 import { setWantCards, addWantCard, deleteOneWantCard } from "../../store/wantCards"
-import { showModal, setCurrentModal } from '../../store/modal';
+// import { showModal, setCurrentModal } from '../../store/modal';
 import '../CSS/Binder.css'
 
 
 const Binder = () => {
     const dispatch = useDispatch()
-    const history = useHistory()
     // const currentHaveCards = useSelector(state=> state.haveCards)
     const user = useSelector(state=> state.session.user)
     const haveCards = useSelector(state=> state.haveCards)
@@ -20,14 +18,14 @@ const Binder = () => {
     const onSubmitHave = (e) => {
         e.preventDefault()
         const sanitizedInput = haveCardId.toLowerCase()
-        const createdCard = dispatch(addHaveCard(sanitizedInput))
+        dispatch(addHaveCard(sanitizedInput))
         setHaveCardId('')
     }
 
     const onSubmitWant = (e) => {
         e.preventDefault()
         const sanitizedInput = wantCardId.toLowerCase()
-        const createdCard = dispatch(addWantCard(sanitizedInput))
+        dispatch(addWantCard(sanitizedInput))
         setWantCardId('')
     }
 
@@ -45,10 +43,7 @@ const Binder = () => {
         dispatch(deleteOneWantCard(sanitizedInput))
     }
 
-    const modalCard = (e) =>{
-        e.preventDefault()
 
-    }
 
 
     useEffect(() => {
@@ -91,7 +86,7 @@ const Binder = () => {
                     haveCards.map((card)=>{
                     return (
                         <>
-                            <img className='card' src={card.image_uris.small}
+                            <img alt={card.name} className='card' src={card.image_uris.small}
                             onClick={deleteHaveCard} id={card.name}></img>
                         </>
                     )})}
@@ -114,12 +109,13 @@ const Binder = () => {
                 <p className='text'>Add cards to your have binder to find others to trade with! Accepts exact card names.
                 Clicking a card will remove it from your binder.
                 </p>
-                <div className='wantBinder' id="full" id="full">
+                <div className='wantBinder' id="full">
                     {Object.keys(wantCards).length > 0 &&
                     wantCards.map((card)=>{
+
                     return (
                         <>
-                            <img className='card' src={card.image_uris.small}
+                            <img key={card.name} alt={card.name} className='card' src={card.image_uris.small}
                             onClick={deleteWantCard}
                             id={card.name}></img>
                         </>

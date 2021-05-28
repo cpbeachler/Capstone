@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import {setModalMount} from './store/modal'
+// import {setModalMount} from './store/modal'
 import './index.css';
 import App from './App';
 import configureStore from './store'

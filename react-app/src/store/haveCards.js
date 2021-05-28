@@ -36,20 +36,20 @@ export const setHaveCards = (cards) => async (dispatch) => {
 }
 
 export const addHaveCard = (cardId) => async(dispatch) => {
-    const response = await fetch('/api/haveCards/', {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            cardId
-        })
-    })
-    const createdCard = await response.json()
-    const externalFetch = await fetch(`https://api.scryfall.com/cards/named?exact=${createdCard.cardId}`)
+    const externalFetch = await fetch(`https://api.scryfall.com/cards/named?exact=${cardId}`)
     const externalFetchData = await externalFetch.json()
     if (externalFetchData.object === 'card') {
-        dispatch(addHave(externalFetchData))}
+        await fetch('/api/haveCards/', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                cardId
+            })
+        })
+        dispatch(addHave(externalFetchData))
+    }
 }
 
 export const deleteOneHaveCard = (id) => async(dispatch) => {
@@ -63,7 +63,7 @@ export const deleteOneHaveCard = (id) => async(dispatch) => {
         })
 
     })
-    const deletedCard = await response.json()
+    await response.json()
     dispatch(delHave(id))
 }
 
