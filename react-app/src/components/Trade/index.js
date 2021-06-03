@@ -12,7 +12,7 @@ const Trade = () => {
             setMatches(responseData.matches)
         }
         fetchMatches()
-
+// implement way for prices and images to be displayed, potential card modal implementation
     },[])
     useEffect(() => {
         function createComponents(){
