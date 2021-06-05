@@ -82,7 +82,7 @@ export default function reducer(state = initialState, action) {
             }
             return action.payload
         case DEL_HAVE:
-            return [...state.filter(card => card.name.toLowerCase() !== action.payload)]
+            return [...state.filter(card => !card.name.toLowerCase().includes(action.payload))]
         default:
             return state
     }

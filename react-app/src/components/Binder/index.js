@@ -84,6 +84,15 @@ const Binder = () => {
                 <div className='haveBinder' id="full">
                     {Object.keys(haveCards).length > 0 &&
                     haveCards.map((card)=>{
+                        if (card.card_faces){
+                            return (
+                                <>
+                                <img key={card.name} alt={card.name} className='card' src={card.card_faces[0].image_uris.small}
+                                onClick={deleteHaveCard}
+                                id={card.card_faces[0].name}></img>
+                            </>
+                            )
+                        }
                     return (
                         <>
                             <img alt={card.name} className='card' src={card.image_uris.small}
@@ -112,6 +121,15 @@ const Binder = () => {
                 <div className='wantBinder' id="full">
                     {Object.keys(wantCards).length > 0 &&
                     wantCards.map((card)=>{
+                        if (card.card_faces){
+                            return (
+                                <>
+                                <img key={card.name} alt={card.name} className='card' src={card.card_faces[0].image_uris.small}
+                                onClick={deleteWantCard}
+                                id={card.card_faces[0].name}></img>
+                            </>
+                            )
+                        }
 
                     return (
                         <>
