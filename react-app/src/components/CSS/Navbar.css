@@ -28,11 +28,17 @@
 .logo{
     height: 60px;
     width: auto;
-    background-color: gray;
+    background-color: white;
+    border-radius: 50%;
+    border-style: none;
     padding: 5px;
     margin: 5px;
 }
 
+.home, .navButton{
+    cursor: pointer;
+
+}
 .noUser{
     display: flex;
     flex-direction: column;
