@@ -46,12 +46,15 @@ const SignUpForm = () => {
 
   return (
     <form onSubmit={onSignUp}
-      className='signup'>
+      className='signup'
+      id='form'>
+      <h1>Sign up</h1>
       <div>
         <label>User Name: </label>
         <input
           type="text"
           name="username"
+          placeholder="Name"
           onChange={updateUsername}
           value={username}
         ></input>
@@ -61,6 +64,7 @@ const SignUpForm = () => {
         <input
           type="text"
           name="email"
+          placeholder="Email"
           onChange={updateEmail}
           value={email}
         ></input>
@@ -69,6 +73,7 @@ const SignUpForm = () => {
         <label> Zip Code: </label>
         <input
           type="text"
+          placeholder="Zip Code"
           name="location"
           onChange={updateLocation}
           value={location}
@@ -79,6 +84,7 @@ const SignUpForm = () => {
         <input
           type="password"
           name="password"
+          placeholder="Password"
           onChange={updatePassword}
           value={password}
         ></input>
@@ -88,12 +94,13 @@ const SignUpForm = () => {
         <input
           type="password"
           name="repeat_password"
+          placeholder="Confirm Password"
           onChange={updateRepeatPassword}
           value={repeatPassword}
           required={true}
         ></input>
       </div>
-      <button type="submit">Sign Up</button>
+      <button className="formButton" type="submit">Sign Up</button>
     </form>
   );
 };

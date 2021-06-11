@@ -9,7 +9,7 @@ function Main() {
     return (
         <div className='container'>
             <div className='all-container'>
-                <h1 className='header' id='name'>Tradr</h1>
+                <h1 className='header' id='name'></h1>
                 <div className='top-container'>
                     <div className='button'
                         onClick={() => {history.push('/binders')}}>

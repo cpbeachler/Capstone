@@ -31,16 +31,24 @@ const Binder = () => {
 
     const deleteHaveCard = (e) => {
         e.preventDefault()
-        const cardId = e.target.id
-        const sanitizedInput = cardId.toLowerCase()
-        dispatch(deleteOneHaveCard(sanitizedInput))
+        if(user.id === 1){
+            window.alert("For deleting cards, please create a new user!")
+        } else {
+            const cardId = e.target.id
+            const sanitizedInput = cardId.toLowerCase()
+            dispatch(deleteOneHaveCard(sanitizedInput))
+        }
     }
 
     const deleteWantCard = (e) => {
         e.preventDefault()
-        const cardId = e.target.id
-        const sanitizedInput = cardId.toLowerCase()
-        dispatch(deleteOneWantCard(sanitizedInput))
+        if(user.id === 1){
+            window.alert("For deleting cards, please create a new user!")
+        } else {
+            const cardId = e.target.id
+            const sanitizedInput = cardId.toLowerCase()
+            dispatch(deleteOneWantCard(sanitizedInput))
+        }
     }
 
 
@@ -84,6 +92,22 @@ const Binder = () => {
                 <div className='haveBinder' id="full">
                     {Object.keys(haveCards).length > 0 &&
                     haveCards.map((card)=>{
+                        let border
+                        if (card.card_faces){
+                            if(card.colors){
+                                border = {filter: `drop-shadow(10px 5px 3px ${card.colors[0]});`}
+                            }else{
+                                border = {filter: `drop-shadow(10px 5px 3px silver);`}
+                            }
+
+                            return (
+                            <>
+                                <img key={card.name} alt={card.name} className='card' src={card.card_faces[0].image_uris.small}
+                                onClick={deleteHaveCard}
+                                id={card.card_faces[0].name} style={border}></img>
+                            </>
+                            )
+                        }
                     return (
                         <>
                             <img alt={card.name} className='card' src={card.image_uris.small}
@@ -112,6 +136,15 @@ const Binder = () => {
                 <div className='wantBinder' id="full">
                     {Object.keys(wantCards).length > 0 &&
                     wantCards.map((card)=>{
+                        if (card.card_faces){
+                            return (
+                                <>
+                                <img key={card.name} alt={card.name} className='card' src={card.card_faces[0].image_uris.small}
+                                onClick={deleteWantCard}
+                                id={card.card_faces[0].name}></img>
+                            </>
+                            )
+                        }
 
                     return (
                         <>
