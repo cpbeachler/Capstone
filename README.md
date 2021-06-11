@@ -1,4 +1,4 @@
-#Tradr
+# Tradr
 This is my take on a Tindr like application for Magic: the Gathering trading cards. My app will allow users to curate a list of owned and wanted cards, and then be matched with users in their zip code which is gathered at account creation.
 
 ## Technologies Used
