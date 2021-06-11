@@ -1,6 +1,31 @@
-# Flask React Project
+#Tradr
+This is my take on a Tindr like application for Magic: the Gathering trading cards. My app will allow users to curate a list of owned and wanted cards, and then be matched with users in their zip code which is gathered at account creation.
 
-This is the backend for the Flask React project.
+## Technologies Used
+- React.js
+- Redux
+- Python
+- Flask
+- JavaScript
+- Node.js
+- HTML5
+- CSS3
+- postgreSQL
+- Heroku
+- Scryfall API
+
+## Views
+### Home
+The home page holds the links to the two main other views, binders and trades. Users will also login here.
+
+![Home](https://user-images.githubusercontent.com/72315462/121710671-d6619280-caa7-11eb-9768-4b6fda625c36.PNG)
+Most of the user data will be generated here. Users can add wanted, and owned cards that are for trade.
+
+![Binder](https://user-images.githubusercontent.com/72315462/121710675-d6fa2900-caa7-11eb-8b09-6a8bc10948d1.PNG)
+On this page all matched trades are listed and returned to the end user.
+
+![Trade](https://user-images.githubusercontent.com/72315462/121710683-d82b5600-caa7-11eb-978b-e9b55605827b.PNG)
+
 
 ## Getting started
 
@@ -53,46 +78,3 @@ This is the backend for the Flask React project.
    psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
    There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
 ***
-
-## Deploy to Heroku
-
-1. Create a new project on Heroku
-2. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-3. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-4. Run
-
-   ```bash
-   heroku login
-   ```
-
-5. Login to the heroku container registry
-
-   ```bash
-   heroku container:login
-   ```
-
-6. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-7. Push your docker container to heroku from the root directory of your project.
-   This will build the dockerfile and push the image to your heroku container registry
-
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
-
-8. Release your docker container to heroku
-
-   ```bash
-   heroku container:release web -a {NAME_OF_HEROKU_APP}
-   ```
-
-9. set up your database:
-
-   ```bash
-   heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-   heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-   ```
-
-10. Under Settings find "Config Vars" and add any additional/secret .env variables.
-
-11. profit
