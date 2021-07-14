@@ -28,11 +28,12 @@ def userMatches(id):
         matchWant = [card.to_dict() for card in WantCard.query.filter_by(userId=matchId).all()]
         for matchHaveCard in matchHave:
             if matchHaveCard.get('cardId') in curWantCards:
-                matchDictionary['trader'] = user.get('username')
-                matchDictionary['contact'] = user.get('email')
-                matchDictionary['wantCard'] = matchHaveCard.get('cardId')
-                for matchWantCard in matchWant:
-                    if matchWantCard.get('cardId') in curHaveCards:
-                        matchDictionary['haveCard'] = matchWantCard.get('cardId')
-                        matches.append(matchDictionary)
+                if userId != matchId:
+                    matchDictionary['trader'] = user.get('username')
+                    matchDictionary['contact'] = user.get('email')
+                    matchDictionary['wantCard'] = matchHaveCard.get('cardId')
+                    for matchWantCard in matchWant:
+                        if matchWantCard.get('cardId') in curHaveCards:
+                            matchDictionary['haveCard'] = matchWantCard.get('cardId')
+                            matches.append(matchDictionary)
     return{"matches": matches}
