@@ -69,8 +69,8 @@ const LoginForm = () => {
         />
       </div>
       <div>
-        <button className="formButton" onClick={demoLogin}>Demo</button>
         <button className="formButton" type="submit">Login</button>
+        <button className="formButton" onClick={demoLogin}>Demo</button>
       </div>
     </form>
   );

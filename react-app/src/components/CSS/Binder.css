@@ -27,11 +27,31 @@ box-shadow: inset 0px 0px 16px 21px rgba(0,0,0,0.55);
     height: 100%;
 }
 
-.card{
+.Silver, .White, .Blue, .Black, .Red, .Green{
     padding: 5px;
     object-fit: contain;
     cursor: pointer;
 }
+
+.Silver{
+    filter: drop-shadow(5px 5px 4px Silver);
+}
+.White{
+    filter: drop-shadow(5px 5px 4px White);
+}
+.Blue{
+    filter: drop-shadow(5px 5px 4px Blue);
+}
+.Black{
+    filter: drop-shadow(5px 5px 4px Black);
+}
+.Red{
+    filter: drop-shadow(5px 5px 4px Red);
+}
+.Green{
+    filter: drop-shadow(5px 5px 4px Green);
+}
+
 
 .wantForm, .haveForm{
     display: flex;

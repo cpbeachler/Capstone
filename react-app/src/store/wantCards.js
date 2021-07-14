@@ -1,6 +1,7 @@
 const SET_WANT ='wantCards/SET_WANT'
 const ADD_WANT = 'wantCards/ADD_WANT'
 const DEL_WANT = 'wantCards/DEL_WANT'
+const REM_WANT = 'wantCards/REM_WANT'
 
 const setWant = (want) => ({
     type: SET_WANT,
@@ -17,9 +18,17 @@ const delWant = (want) => ({
     payload: want
 })
 
+const remWant = (want) => ({
+    type: REM_WANT,
+    payload: want
+})
+
+export const clearWant = () => async(dispatch) => {
+    console.log('clearWant')
+    dispatch(remWant())
+}
 
 export const setWantCards = (cards) => async (dispatch) => {
-
     let call = {'identifiers': []}
     cards.map((card, id)=> call.identifiers[id] = {'name': card.cardId})
     const response = await fetch('https://api.scryfall.com/cards/collection', {
@@ -83,6 +92,8 @@ export default function reducer(state = initialState, action) {
             return action.payload
         case DEL_WANT:
             return [...state.filter(card => card.name.toLowerCase() !== action.payload)]
+        case REM_WANT:
+            return []
         default:
             return state
     }

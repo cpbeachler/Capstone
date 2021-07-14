@@ -92,26 +92,30 @@ const Binder = () => {
                 <div className='haveBinder' id="full">
                     {Object.keys(haveCards).length > 0 &&
                     haveCards.map((card)=>{
-                        let border
+                        let cardColor = 'Silver'
+                        if(card.colors.length){
+                            cardColor =
+                                card.colors[0] === 'B' ? 'Black':
+                                card.colors[0] === 'W' ? 'White':
+                                card.colors[0] === 'U' ? 'Blue':
+                                card.colors[0] === 'R' ? 'Red':
+                                card.colors[0] === 'G' ? 'Green':
+                                'Silver'
+                        }
                         if (card.card_faces){
-                            if(card.colors){
-                                border = {filter: `drop-shadow(10px 5px 3px ${card.colors[0]});`}
-                            }else{
-                                border = {filter: `drop-shadow(10px 5px 3px silver);`}
-                            }
-
                             return (
                             <>
-                                <img key={card.name} alt={card.name} className='card' src={card.card_faces[0].image_uris.small}
+                                <img key={card.name} alt={card.name} className={`card, ${cardColor}`} src={card.card_faces[0].image_uris.small}
                                 onClick={deleteHaveCard}
-                                id={card.card_faces[0].name} style={border}></img>
+                                id={card.card_faces[0].name}
+                                ></img>
                             </>
                             )
                         }
                     return (
                         <>
-                            <img alt={card.name} className='card' src={card.image_uris.small}
-                            onClick={deleteHaveCard} id={card.name}></img>
+                            <img alt={card.name} className={`card, ${cardColor}`} src={card.image_uris.small}
+                            onClick={deleteHaveCard} id={card.name} ></img>
                         </>
                     )})}
                 </div>
@@ -136,10 +140,20 @@ const Binder = () => {
                 <div className='wantBinder' id="full">
                     {Object.keys(wantCards).length > 0 &&
                     wantCards.map((card)=>{
+                        let cardColor = 'Silver'
+                        if(card.colors.length){
+                            cardColor =
+                                card.colors[0] === 'B' ? 'Black':
+                                card.colors[0] === 'W' ? 'White':
+                                card.colors[0] === 'U' ? 'Blue':
+                                card.colors[0] === 'R' ? 'Red':
+                                card.colors[0] === 'G' ? 'Green':
+                                'Silver'
+                        }
                         if (card.card_faces){
                             return (
                                 <>
-                                <img key={card.name} alt={card.name} className='card' src={card.card_faces[0].image_uris.small}
+                                <img key={card.name} alt={card.name} className={`card, ${cardColor}`} src={card.card_faces[0].image_uris.small}
                                 onClick={deleteWantCard}
                                 id={card.card_faces[0].name}></img>
                             </>
@@ -148,7 +162,7 @@ const Binder = () => {
 
                     return (
                         <>
-                            <img key={card.name} alt={card.name} className='card' src={card.image_uris.small}
+                            <img key={card.name} alt={card.name} className={`card, ${cardColor}`} src={card.image_uris.small}
                             onClick={deleteWantCard}
                             id={card.name}></img>
                         </>

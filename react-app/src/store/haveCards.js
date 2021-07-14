@@ -1,6 +1,7 @@
 const SET_HAVE ='haveCards/SET_HAVE'
 const ADD_HAVE = 'haveCards/ADD_HAVE'
 const DEL_HAVE = 'haveCards/DEL_HAVE'
+const REM_HAVE = 'haveCards/REM_HAVE'
 
 const setHave = (have) => ({
     type: SET_HAVE,
@@ -16,6 +17,15 @@ const delHave = (have) => ({
     type: DEL_HAVE,
     payload: have
 })
+
+const remHave = (have) => ({
+    type: REM_HAVE,
+    payload: have
+})
+
+export const clearHave = () => async(dispatch) => {
+    dispatch(remHave())
+}
 
 
 export const setHaveCards = (cards) => async (dispatch) => {
@@ -83,6 +93,8 @@ export default function reducer(state = initialState, action) {
             return action.payload
         case DEL_HAVE:
             return [...state.filter(card => !card.name.toLowerCase().includes(action.payload))]
+        case REM_HAVE:
+            return []
         default:
             return state
     }
